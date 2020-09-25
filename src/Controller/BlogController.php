@@ -44,11 +44,22 @@ What is a DoctrineFixturesBundle ?
 It's a script that is role is to create fake data to fill some rows of a table in the dabase.
 more info here: https://bit.ly/30b8478
 
-How do I create a dabase using Doctrine ?
+How do I create a database using Doctrine ?
 Run the following command: php bin/console doctrine:database:create
 
 How do I create a table in database using Doctrine ?
 Run the following command: php bin/console make:entity
+
+How do I migrate the entites to the database ?
+Run the following commands: 
+- php bin/console make:migration
+- php bin/console make:migrate
+checkout the VersionXXX file created under the migrations folder
+for sql commands.
+
+
+
+
 
 */
 
