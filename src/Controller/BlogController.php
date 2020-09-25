@@ -94,6 +94,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends AbstractController
 {
@@ -124,6 +126,30 @@ class BlogController extends AbstractController
             'age' => 21
         ]);
     }
+
+    /**
+     * @Route("/blog/new",name="blog_create")
+     */
+
+    public function create(Request $request, EntityManagerInterface $manager)
+    {
+        dump($request);
+
+        if ($request->request->count() > 0) {
+            $article = new Article();
+            $article->setTitle($request->request->get('title'))
+                ->setContent($request->request->get('content'))
+                ->setImage($request->request->get('image'))
+                ->setCreatedAt(new \DateTime());
+
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+        }
+        return $this->render('blog/create.html.twig');
+    }
+
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
