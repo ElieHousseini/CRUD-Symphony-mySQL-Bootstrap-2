@@ -67,6 +67,8 @@ to load fake data to the dabase.
 How do I load the fake data to the database ?
 Run the following command: php bin/console doctrine:fixtures:load
 
+What is a Repo ?
+It's a tool that we can select data from a table in the database.
 
 
 */
@@ -75,6 +77,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Article;
 
 class BlogController extends AbstractController
 {
@@ -83,8 +86,15 @@ class BlogController extends AbstractController
      */
     public function index()
     {
+        // Getting Repo data from database using Entity "Article"
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+
+        // Getting all the data 
+        $articles = $repo->findAll();
+
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
+            'articles' => $articles
         ]);
     }
 

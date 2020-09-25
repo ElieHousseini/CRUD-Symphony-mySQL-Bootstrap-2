@@ -9,6 +9,7 @@ filled it up with code.
 {% block body %}
 
 <section class="articles">
+    {% for article in articles %}
     <article>
         <h2>Titre de l'article</h2>
         <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
@@ -21,30 +22,7 @@ filled it up with code.
             <a href="{{ path('blog_show') }}" class="btn btn-primary">lire la suite</a>
         </div>
     </article>
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
-        <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Consequatur nulla perferendis sint, delectus quisquam in sunt eos fuga, ducimus mollitia nesciunt illo
-                maxime.</p>
-            <p>Dicta veritatis nam eos est nihil doloribus asperiores facilis, sed fugit quas nostrum dolore tenetur?
-            </p>
-            <a href="{{ path('blog_show') }}" class="btn btn-primary">lire la suite</a>
-        </div>
-    </article>
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
-        <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Quidem suscipit molestias minus corporis sunt quo fuga laboriosam, ipsum ducimus id earum repudiandae ad.
-            </p>
-            <p>Id odit officia quidem tempore eveniet placeat debitis minima, ullam pariatur? Ipsum porro quos
-                excepturi.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-primary">lire la suite</a>
-        </div>
-    </article>
+    {% endfor %}
 </section>
 
 {% endblock %}
