@@ -8,7 +8,7 @@ In Symfony, a controller is usually a class method which is
 used to accept requests, and return a Response object. 
 When mapped with a URL, a controller becomes accessible and its response can be viewed.
 To facilitate the development of controllers, Symfony provides an AbstractController.
-More info here: https://symfony.com/doc/current/the-fast-track/en/6-controller.html
+More info here: https://bit.ly/364QYeQ
 
 What is @Route("/", name="home") ? 
 It is simply a navigator that let symfony know that once you navigate to "/"
@@ -70,7 +70,22 @@ Run the following command: php bin/console doctrine:fixtures:load
 What is a Repo ?
 It's a tool that we can select data from a table in the database.
 
+Why I commented out this line: $repo = $this->getDoctrine()->getRepository(Article::class) ?
+First, we need to understand that index() is a dependant function, which means it only
+works in case there an entity called Article and a table inside the DB also called Article.
 
+Second, the line mentioned in the question above is responsible to tell Doctrine that 
+I need a repository named Article.
+However, if I just added this repo as prop inside that function, Symfony will 
+understand that I need the Reposoitory Article in order for the function to work correctly.
+Therefore, Symfony will import it automatically and I do not need that ligne.
+
+Why I commented the line $article = $repo->find($id) ?
+Symfony knows that route ends with {id} so I am requesting for something with an id.
+When I give Article as prop, that rings the bell for Symfony that I need an article 
+with an {id} which is defined according to the route.
+This concept is called @ParamConverter.
+More info here: https://bit.ly/30aBfqV
 */
 
 namespace App\Controller;
@@ -78,16 +93,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 
 class BlogController extends AbstractController
 {
     /**
      * @Route("/blog", name="blog")
      */
-    public function index()
+    public function index(ArticleRepository $repo)
     {
         // Getting Repo data from database using Entity "Article"
-        $repo = $this->getDoctrine()->getRepository(Article::class);
+        // $repo = $this->getDoctrine()->getRepository(Article::class);
 
         // Getting all the data 
         $articles = $repo->findAll();
@@ -111,10 +127,11 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
-    public function show($id)
+    // public function show(ArticleRepository $repo, $id)
+    public function show(Article $article)
     {
-        $repo = $this->getDoctrine()->getRepository(Article::class);
-        $article = $repo->find($id);
+        // $repo = $this->getDoctrine()->getRepository(Article::class);
+        // $article = $repo->find($id);
         return $this->render('blog/show.html.twig', [
             'article' => $article
         ]);
