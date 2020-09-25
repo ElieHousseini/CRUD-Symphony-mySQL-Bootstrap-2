@@ -1,34 +1,50 @@
 {% extends 'base.html.twig' %}
-{# This was generated with the controller: BlogController.php #}
+{# 
+This was generated empty with the controller: BlogController.php then we
+filled it up with code.
+#}
 
 {% block title %}Hello BlogController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper {
-        margin: 1em auto;
-        max-width: 800px;
-        width: 95%;
-        font: 18px/1.5 sans-serif;
-    }
 
-    .example-wrapper code {
-        background: #F5F5F5;
-        padding: 2px 6px;
-    }
-</style>
+<section class="articles">
+    <article>
+        <h2>Titre de l'article</h2>
+        <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
+        <div class="content">
+            <img src="http://placehold.it/350x150" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dignissimos. Ducimus possimus amet aut
+                asperiores?</p>
+            <p>Nesciunt atque deserunt, temporibus, modi esse inventore itaque tempora, eum nam quaerat cupiditate ipsa
+                suscipit.</p>
+            <a href="" class="btn btn-primary">lire la suite</a>
+        </div>
+    </article>
+    <article>
+        <h2>Titre de l'article</h2>
+        <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
+        <div class="content">
+            <img src="http://placehold.it/350x150" alt="">
+            <p>Consequatur nulla perferendis sint, delectus quisquam in sunt eos fuga, ducimus mollitia nesciunt illo
+                maxime.</p>
+            <p>Dicta veritatis nam eos est nihil doloribus asperiores facilis, sed fugit quas nostrum dolore tenetur?
+            </p>
+            <a href="" class="btn btn-primary">lire la suite</a>
+        </div>
+    </article>
+    <article>
+        <h2>Titre de l'article</h2>
+        <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
+        <div class="content">
+            <img src="http://placehold.it/350x150" alt="">
+            <p>Quidem suscipit molestias minus corporis sunt quo fuga laboriosam, ipsum ducimus id earum repudiandae ad.
+            </p>
+            <p>Id odit officia quidem tempore eveniet placeat debitis minima, ullam pariatur? Ipsum porro quos
+                excepturi.</p>
+            <a href="" class="btn btn-primary">lire la suite</a>
+        </div>
+    </article>
+</section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at
-            <code><a href="{{ 'C:/xampp/htdocs/symfonyFrench2/src/Controller/BlogController.php'|file_link(0) }}">src/Controller/BlogController.php</a></code>
-        </li>
-        <li>Your template at
-            <code><a href="{{ 'C:/xampp/htdocs/symfonyFrench2/templates/blog/index.html.twig'|file_link(0) }}">templates/blog/index.html.twig</a></code>
-        </li>
-    </ul>
-</div>
 {% endblock %}
