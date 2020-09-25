@@ -11,15 +11,13 @@ filled it up with code.
 <section class="articles">
     {% for article in articles %}
     <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y') }} a {{article.createdAt | date('H:i')}} dans
+            la categorie politique</div>
         <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dignissimos. Ducimus possimus amet aut
-                asperiores?</p>
-            <p>Nesciunt atque deserunt, temporibus, modi esse inventore itaque tempora, eum nam quaerat cupiditate ipsa
-                suscipit.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-primary">lire la suite</a>
+            <img src="{{article.image}}" alt="">
+            {{article.content | raw }}
+            <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">lire la suite</a>
         </div>
     </article>
     {% endfor %}

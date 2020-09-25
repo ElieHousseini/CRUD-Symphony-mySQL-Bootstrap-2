@@ -4,23 +4,17 @@
 
 {% block body %}
 <article>
-  <h2>Titre de l'article</h2>
-  <div class="metadata">Ecrit le 10/05/2018 a 19:00 dans la categorie politique</div>
+  <h2>{{article.title}}</h2>
+  <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('H:i')}} dans la
+    categorie politique</div>
   <div class="content">
-    <img src="http://placehold.it/350x150" alt="">
+    <img src="{{article.image}}" alt="">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dignissimos. Ducimus possimus amet aut
       asperiores?</p>
     <p>Nesciunt atque deserunt, temporibus, modi esse inventore itaque tempora, eum nam quaerat cupiditate ipsa
       suscipit.</p>
     <hr>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus necessitatibus amet quidem odio animi
-      minima, voluptatum laboriosam quia, excepturi consequuntur ducimus praesentium consectetur adipisci illo! Quas
-      distinctio commodi corporis maiores obcaecati quia quae beatae quis expedita excepturi dignissimos, minus tempora
-      sunt, quidem consectetur a ea? Aut debitis eaque deleniti dignissimos.</p>
-    <p>Voluptatibus maiores tempore obcaecati eos nemo laborum, minus laudantium quos molestiae earum asperiores
-      corrupti! Praesentium necessitatibus sit neque itaque perspiciatis obcaecati consequuntur incidunt unde sapiente
-      consequatur doloremque ipsum debitis, quae veniam aspernatur vitae iure eveniet quibusdam atque tenetur totam
-      similique ut! Aperiam placeat ad dolorum blanditiis libero provident tempore voluptates.</p>
+    {{article.content | raw}}
   </div>
 </article>
 {% endblock body %}
