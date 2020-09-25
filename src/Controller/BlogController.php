@@ -57,7 +57,15 @@ Run the following commands:
 checkout the VersionXXX file created under the migrations folder
 for sql commands.
 
+How do I add DoctrineFixturesBundle ?
+Run the following commands: 
+- composer require orm-fixtures --dev
+- php bin/console make:fixtures
+checkout the ArticleFixtures file created under the DataFixtures folder
+to load fake data to the dabase.
 
+How do I load the fake data to the database ?
+Run the following command: php bin/console doctrine:fixtures:load
 
 
 
