@@ -1,8 +1,15 @@
 {#
 The variables title and age where passed from the page: BlogController.php
 using the function home().
+
+What is happening here ?
+I am extending the file base.html.twig
+then replacing the body part of base.html.twig with a custom body part.
 #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
 
 <h1>{{title}}</h1>
-
 <p>I am {{age}} years old.</p>
+{% endblock %}
