@@ -86,6 +86,20 @@ When I give Article as prop, that rings the bell for Symfony that I need an arti
 with an {id} which is defined according to the route.
 This concept is called @ParamConverter.
 More info here: https://bit.ly/30aBfqV
+
+What does create() function do ?
+Since the create form is of method 'post', it will be sending data to the server somehow.
+This data will be enveloped in something called request.
+In the function create, I am requiring a request Object and a manage object.
+the command: dump($request) means I want to analyse the request. It's optional in this code.
+After that, the if statement is checking is the request contains actually more than 0 data.
+Those data are actually the data that the user entered before submitting the form.
+if the case is true, I am creating an article using the those data provided.
+after that I am uploading the data to the DB using persist and flush functions.
+Then I am redirecting the user to the show page according to the ID red from the data.
+In other words, after submitting the info, the user will see the data that he filled in the 
+form inside an article.
+
 */
 
 namespace App\Controller;
