@@ -9,11 +9,18 @@ It's useful to:
 and much more.
 
 More info here: https://symfony.com/doc/4.2/templating.html 
+
+Why including Links/code blocks here ?
+This is a base page, meaning every other page I create will extend this page.
+
 #}
 <html>
 
 <head>
     <meta charset="UTF-8">
+    <!-- including Bootswatch cdn link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css">
+
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
