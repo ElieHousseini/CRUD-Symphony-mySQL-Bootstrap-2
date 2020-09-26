@@ -1,9 +1,16 @@
 <?php
 
+/*
+What is Assert ?
+it adds the validation for the form
+more info here: https://bit.ly/3404e1D
+*/
+
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -19,6 +26,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10, max=255, minMessage="Votre titre est bien trop court lamis")
      */
     private $title;
 
@@ -29,6 +37,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url()
      */
     private $image;
 
