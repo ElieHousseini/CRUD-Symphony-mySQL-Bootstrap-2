@@ -137,7 +137,7 @@ In this case, the button Submit will trigger adding or editing an article.
 > What does  $form->handleRequest($request) do ?
 it handles the request, and knows if eveything is alright with the request.
 
-! NOTE: the create() function is now called form, it is responsible to update and create
+! NOTE: the create() function is now called form(), it is responsible to update and create
 ! articles. 
 
 > Why am I defaulting the prop (Article $article = null) inside the function form mean to null ?
@@ -152,6 +152,8 @@ the form will be generated in the form folder inside src
 
 > what does $form = $this->createForm(ArticleType::class, $article) do ?
 it will create the form using the entity class that we generated using from CLI
+
+> We created an entity called Catergory and we integrate it
 
 */
 
