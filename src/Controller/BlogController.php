@@ -137,6 +137,14 @@ In this case, the button Submit will trigger adding or editing an article.
 > What does  $form->handleRequest($request) do ?
 it handles the request, and knows if eveything is alright with the request.
 
+! NOTE: the create() function is now called form, it is responsible to update and create
+! articles. 
+
+> Why am I defaulting the prop (Article $article = null) inside the function form mean to null ?
+because when I create a new article, the article would not have any ID or Title or anything.
+But in the code inside the function form, I am accessing it's attributes which in this case
+can cause a no reference error crash. Therefore, defaulting the value of the $article
+to null, will protect me from that crash and the app will run continue running normally. 
 
 */
 
@@ -183,10 +191,14 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/blog/new",name="blog_create")
+     * @Route("/blog/{id}/edit", name="blog_edit")
      */
 
-    public function create(Request $request, EntityManagerInterface $manager)
+    public function form(Article $article = null, Request $request, EntityManagerInterface $manager)
     {
+        if (!$article) {
+            $article = new Article();
+        }
         // dump($request);
 
         // if ($request->request->count() > 0) {
@@ -202,7 +214,7 @@ class BlogController extends AbstractController
         //     return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
         // }
 
-        $article = new Article();
+        // $article = new Article();
 
         $form = $this->createFormBuilder($article)
             ->add('title', TextType::class, [
@@ -230,6 +242,9 @@ class BlogController extends AbstractController
         // dump($article);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$article->getId()) {
+                $article->setCreatedAt(new \DateTime());
+            }
             $article->setCreatedAt(new \DateTime());
 
             $manager->persist($article);
@@ -240,7 +255,8 @@ class BlogController extends AbstractController
 
 
         return $this->render('blog/create.html.twig', [
-            'formArticle' => $form->createView()
+            'formArticle' => $form->createView(),
+            'editMode' => $article->getId() != null
         ]);
     }
 
