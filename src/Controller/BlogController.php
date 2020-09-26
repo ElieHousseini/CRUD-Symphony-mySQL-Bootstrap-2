@@ -115,8 +115,6 @@ in the database so in html it translates to normal input field.
 just add the type you want as second prop of the field 
 for example: ->add('content', TextareaType::class, 'attr' => ['placeholder' => 'write here'])
 make sure you import it on top of the page before using it.
-
-
 Note: You can always choose the type of input you want without being binded with
 the type declared in the  database by adding a second prop with the type.
 for example:  ->add('content', TextType:class)
@@ -135,6 +133,9 @@ but in the case of bootstrap it's automatic.
 When I add buttons here, there functionality will be locked to one task. 
 however, when I put it in the create.html.twig it will be multi purpose. 
 In this case, the button Submit will trigger adding or editing an article.
+
+> What does  $form->handleRequest($request) do ?
+it handles the request, and knows if eveything is alright with the request.
 
 
 */
@@ -223,6 +224,20 @@ class BlogController extends AbstractController
                 // ]
             ])
             ->getForm();
+
+        $form->handleRequest($request);
+
+        // dump($article);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article->setCreatedAt(new \DateTime());
+
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+        }
+
 
         return $this->render('blog/create.html.twig', [
             'formArticle' => $form->createView()
