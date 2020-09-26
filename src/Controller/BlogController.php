@@ -144,7 +144,14 @@ it handles the request, and knows if eveything is alright with the request.
 because when I create a new article, the article would not have any ID or Title or anything.
 But in the code inside the function form, I am accessing it's attributes which in this case
 can cause a no reference error crash. Therefore, defaulting the value of the $article
-to null, will protect me from that crash and the app will run continue running normally. 
+to null, will protect me from that crash and the app will run continue running normally.
+
+> Creating a form using CLI:
+use the command: php bin/console make:form
+the form will be generated in the form folder inside src
+
+> what does $form = $this->createForm(ArticleType::class, $article) do ?
+it will create the form using the entity class that we generated using from CLI
 
 */
 
@@ -156,6 +163,7 @@ use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\ArticleType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -196,9 +204,7 @@ class BlogController extends AbstractController
 
     public function form(Article $article = null, Request $request, EntityManagerInterface $manager)
     {
-        if (!$article) {
-            $article = new Article();
-        }
+
         // dump($request);
 
         // if ($request->request->count() > 0) {
@@ -215,27 +221,33 @@ class BlogController extends AbstractController
         // }
 
         // $article = new Article();
+        // -----------------------------------------------
+        if (!$article) {
+            $article = new Article();
+        }
+        // $form = $this->createFormBuilder($article)
+        //     ->add('title', TextType::class, [
+        //         // 'attr' => [
+        //         //     'placeholder' => 'titre de larticle',
+        //         // 'class' => 'form-control'
+        //         // ]
+        //     ])
+        //     ->add('content', TextareaType::class, [
+        //         // 'attr' => [
+        //         //     'placeholder' => 'Contenu de larticle',
+        //         // 'class' => 'form-control'
+        //         // ]
+        //     ])
+        //     ->add('image', TextType::class, [
+        //         // 'attr' => [
+        //         //     'placeholder' => 'image de larticle',
+        //         // 'class' => 'form-control'
+        //         // ]
+        //     ])
+        //     ->getForm();
+        //----------------------
 
-        $form = $this->createFormBuilder($article)
-            ->add('title', TextType::class, [
-                // 'attr' => [
-                //     'placeholder' => 'titre de larticle',
-                // 'class' => 'form-control'
-                // ]
-            ])
-            ->add('content', TextareaType::class, [
-                // 'attr' => [
-                //     'placeholder' => 'Contenu de larticle',
-                // 'class' => 'form-control'
-                // ]
-            ])
-            ->add('image', TextType::class, [
-                // 'attr' => [
-                //     'placeholder' => 'image de larticle',
-                // 'class' => 'form-control'
-                // ]
-            ])
-            ->getForm();
+        $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request);
 
