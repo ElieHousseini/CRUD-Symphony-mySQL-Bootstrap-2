@@ -45,7 +45,13 @@
 })}}
 
 
-<button type='submit' class="btn btn-success">Ajouter larticle</button>
+<button type='submit' class="btn btn-success">
+  {% if editMode %}
+  Enregistrer
+  {% else %}
+  Ajouter larticle
+  {% endif %}
+</button>
 
 {{form_end(formArticle) }}
 
