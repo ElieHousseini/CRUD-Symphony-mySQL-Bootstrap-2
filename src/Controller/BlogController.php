@@ -104,6 +104,29 @@ which is creating a new Article. In fact, Symfony provided us a new syntax for r
 was I was doing with the previous code with less coding.
 more info here: https://bit.ly/2GcEreg
 
+> How does Symfony knows the type of elements I want in the function create() ?
+Symfony gets field types from the database.
+Therefore in this case, context field in the database was of type longtext,
+that translates to textarea in html, same goes with title, it's varchar(255) 
+in the database so in html it translates to normal input field.
+
+
+> How do I add a class to a form field ?
+just add the type you want as second prop of the field 
+for example: ->add('content', TextareaType::class, 'attr' => ['placeholder' => 'write here'])
+make sure you import it on top of the page before using it.
+
+
+Note: You can always choose the type of input you want without being binded with
+the type declared in the  database by adding a second prop with the type.
+for example:  ->add('content', TextType:class)
+more info here: https://bit.ly/2GcEreg seach for [Form types] section.
+
+> How to add HTML to a form field ?
+use the prop 'attr' and pass whatever HTML you want to the element.
+for example: ->add('content', TextareaType::class, 'attr' => ['placeholder' => 'write here'])
+
+
 */
 
 namespace App\Controller;
@@ -114,6 +137,8 @@ use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class BlogController extends AbstractController
 {
@@ -169,13 +194,28 @@ class BlogController extends AbstractController
         $article = new Article();
 
         $form = $this->createFormBuilder($article)
-            ->add('title')
-            ->add('content')
-            ->add('image')
+            ->add('title', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'titre de larticle',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('content', TextareaType::class, [
+                'attr' => [
+                    'placeholder' => 'Contenu de larticle',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('image', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'image de larticle',
+                    'class' => 'form-control'
+                ]
+            ])
             ->getForm();
 
         return $this->render('blog/create.html.twig', [
-            'form' => $form->createView()
+            'formArticle' => $form->createView()
         ]);
     }
 
