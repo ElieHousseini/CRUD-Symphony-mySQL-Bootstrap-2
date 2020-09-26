@@ -6,7 +6,11 @@
 
   What does form_widget(formArticle) mean ?
   it returns everything inside the formArticle created by method create() inside BlogController
-#}
+
+  What does form_error(formArticle.title) do ?
+  it's a function call where you can use it to customize the errors CSS.
+  in this it's useful if you don't want to use Bootstrap.
+  #}
 {% block body %}
 <h1>Creation d'un article!</h1>
 {# 
@@ -34,6 +38,7 @@
 
 {# {{form_widget(formArticle)}} #}
 
+{# {{form_error(formArticle.title)}} #}
 {{form_row(formArticle.title, {
   'attr':{'placeholder':'Title de larticle'}
 })}}
