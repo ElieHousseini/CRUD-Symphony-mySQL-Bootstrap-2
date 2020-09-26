@@ -3,6 +3,9 @@
 {# 
   action="" means after clicking the button Enregister, which
   typically submits the data to the DB, I want to comeback to this page.
+
+  What does form_widget(formArticle) mean ?
+  it returns everything inside the formArticle created by method create() inside BlogController
 #}
 {% block body %}
 <h1>Creation d'un article!</h1>
@@ -29,7 +32,20 @@
   {{ form_widget(formArticle.image)}}
 </div> #}
 
-{{form_widget(formArticle)}}
+{# {{form_widget(formArticle)}} #}
+
+{{form_row(formArticle.title, {
+  'attr':{'placeholder':'Title de larticle'}
+})}}
+{{form_row(formArticle.content, {
+  'attr':{'placeholder':'Contenu de larticle'}
+})}}
+{{form_row(formArticle.image, {
+  'attr':{'placeholder':'URL de limage'}
+})}}
+
+
+<button type='submit' class="btn btn-success">Ajouter larticle</button>
 
 {{form_end(formArticle) }}
 

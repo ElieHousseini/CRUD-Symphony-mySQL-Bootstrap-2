@@ -126,6 +126,16 @@ more info here: https://bit.ly/2GcEreg seach for [Form types] section.
 use the prop 'attr' and pass whatever HTML you want to the element.
 for example: ->add('content', TextareaType::class, 'attr' => ['placeholder' => 'write here'])
 
+> Why I commented the bootstrap classes inside form ?
+it's because I added Bootrap as a general theme inside the bin/config/twig.yaml
+it will be added to all corresponding elements. You can still put any class you want.
+but in the case of bootstrap it's automatic.
+
+> Why I added the button Submit inside the create.html.twig not here ?
+When I add buttons here, there functionality will be locked to one task. 
+however, when I put it in the create.html.twig it will be multi purpose. 
+In this case, the button Submit will trigger adding or editing an article.
+
 
 */
 
@@ -195,22 +205,22 @@ class BlogController extends AbstractController
 
         $form = $this->createFormBuilder($article)
             ->add('title', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'titre de larticle',
-                    'class' => 'form-control'
-                ]
+                // 'attr' => [
+                //     'placeholder' => 'titre de larticle',
+                // 'class' => 'form-control'
+                // ]
             ])
             ->add('content', TextareaType::class, [
-                'attr' => [
-                    'placeholder' => 'Contenu de larticle',
-                    'class' => 'form-control'
-                ]
+                // 'attr' => [
+                //     'placeholder' => 'Contenu de larticle',
+                // 'class' => 'form-control'
+                // ]
             ])
             ->add('image', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'image de larticle',
-                    'class' => 'form-control'
-                ]
+                // 'attr' => [
+                //     'placeholder' => 'image de larticle',
+                // 'class' => 'form-control'
+                // ]
             ])
             ->getForm();
 
