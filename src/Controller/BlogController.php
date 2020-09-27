@@ -155,6 +155,8 @@ it will create the form using the entity class that we generated using from CLI
 
 > We created an entity called Catergory and we integrate it
 
+> Customizing Redirect After Form Login: https://bit.ly/2Gb6T0b
+
 */
 
 namespace App\Controller;
