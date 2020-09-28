@@ -34,10 +34,12 @@ It's formed from 3 main parts:
 it's a file that can express how my DB looks. 
 You can run the commands in it on your DB and those commands are able to make
 your DB very similar to the one I have here. 
+I am using mySQL DB, feel free to translate the commands to the sytax of the realational DB 
+you are using.
 It's useful when many developers are working on the same project. 
 They can run it then they do not need to run any other sql commands to memic how your
 DB looks.
-You can do as much migrations as you want. But be careful from there order.
+You can do as much migrations as you want. But be careful from there order and squence.
 more info here: https://bit.ly/2G0hAmr
 
 > What is a DoctrineFixturesBundle ?
@@ -47,13 +49,13 @@ more info here: https://bit.ly/30b8478
 > How do I create a database using Doctrine ?
 Run the following command: php bin/console doctrine:database:create
 
-> How do I create a table in database using Doctrine ?
+> How do I create an entity ?
 Run the following command: php bin/console make:entity
 
 > How do I migrate the entites to the database ?
 Run the following commands: 
 - php bin/console make:migration
-- php bin/console make:migrate
+- php bin/console doctrine:migrations:migrate
 checkout the VersionXXX file created under the migrations folder
 for sql commands.
 
