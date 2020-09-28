@@ -4,6 +4,13 @@
 What is Assert ?
 it adds the validation for the form
 more info here: https://bit.ly/3404e1D
+
+What is orphanRemoval above the $comment ? 
+It basically means, when I disconnect the relation between the instance of a comment
+and an article the comment instance will be called orphan. orphanRemoval=true means
+I want to remove that instance of a comment the moment I lose connection with the Article.
+Which is logical, Because I can't have a comment without an article.
+
 */
 
 namespace App\Entity;

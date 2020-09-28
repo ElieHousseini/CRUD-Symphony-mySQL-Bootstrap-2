@@ -20,9 +20,7 @@ class ArticleType extends AbstractType
                 'choice_label' => 'title'
             ])
             ->add('content')
-            ->add('image')
-            // ->add('createdAt')
-        ;
+            ->add('image');
     }
 
     public function configureOptions(OptionsResolver $resolver)

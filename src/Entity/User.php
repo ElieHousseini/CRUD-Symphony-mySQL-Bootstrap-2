@@ -1,8 +1,28 @@
 <?php
 /* 
-Main goal to implement UserInterface is so Symfony knows that
+
+> Main goal to implement UserInterface is so Symfony knows that
 this class is a real user class. Therefore, I can hash it's password
 in the security controller.
+The functions eraseCredentials(), getSalt() are 
+inherited from the interface UserInterface(). So, I am forced to 
+write them down, even tho I will not use them.
+
+> The UniqueEntity takes a field, which is the field I want it to be 
+unique and a message. Here, I am securing the field from being 
+replicated in the level of the back-end not front-end.
+To secure it from the front-end, you need to modify the twig files.
+
+> Why the setter functions return $this ?
+First, it's a good practice (it helps troubleshooting problems)
+Second, it makes us chain setter calls together.
+More info here: https://bit.ly/2S5x7Uz (4th post by Hall_of_Famer)
+
+> Why I am returning ['ROLE_USER'] in the function getRoles() ?
+it's because we only have 1 type of users which is an admin.
+so we only return one type in here. if for example, we have 
+customer, admin, ... we return there types in here too.
+
 */
 
 namespace App\Entity;
